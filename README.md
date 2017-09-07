@@ -10,7 +10,7 @@ MONGO_URL=...
 
 - `yarn` 
 
-- `yarn start`
+- `yarn watch`
 
 ## Graphiql
 
