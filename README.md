@@ -1,4 +1,6 @@
 # NodeJS GraphQL server
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/albertobravi/nodejs-graphql-server.svg)](https://greenkeeper.io/)
 A GraphQL server written in NodeJS
 
 ## Getting started
