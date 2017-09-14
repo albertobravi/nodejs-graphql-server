@@ -1,6 +1,8 @@
 # NodeJS GraphQL server
 A GraphQL server written in NodeJS
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/albertobravi/nodejs-graphql-server.svg)](https://greenkeeper.io/)
+
 ## Getting started
 
 - Create a file `.env` with a valid MongoDB connection url
