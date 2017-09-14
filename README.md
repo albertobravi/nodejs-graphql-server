@@ -20,6 +20,7 @@ go here: [graphiql](http://localhost:8888/graphql/graphiql)
 
 ## Database schema (Example)
 
+Collection name: `recipes`
 ```json
 {
     "_id": {
