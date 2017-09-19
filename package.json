@@ -9,6 +9,7 @@
   "scripts": {
     "build": "babel src -d dist",
     "postinstall": "yarn build",
+    "import-data": "node dist/feeder/MongoImporter.js",
     "start": "node dist/server.js",
     "watch": "nodemon --exec 'yarn build' --watch src ./src/server.js"
   },

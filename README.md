@@ -7,9 +7,9 @@ A GraphQL server written in NodeJS
 
 - `cp .env.example .env` (and edit as needed)
 
-- `yarn` 
+- `yarn import-data`
 
-- `yarn watch`
+- `yarn start`
 
 ## Graphiql
 
