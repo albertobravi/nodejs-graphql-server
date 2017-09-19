@@ -1,9 +1,7 @@
-import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import env from '../config';
 
-dotenv.config();
-
-mongoose.connect(process.env.MONGO_URL, {
+mongoose.connect(env.MONGO_URL, {
   useMongoClient: true,
 });
 

@@ -5,17 +5,19 @@ A GraphQL server written in NodeJS
 
 ## Requirements
 - NodeJS
-- MongoDB
+- MongoDB _(we need a URI so you can install Mongo in local or remote)_
 
 ## Getting started
 
-- `cp .env.example .env` (and edit as needed)
+- `cp .env.example .env` _(and edit as needed, insert the Mongo URI)_
 
 - `yarn`
 
 - `yarn import-data`
 
 - `yarn start`
+
+- Navigate to: [localhost:8888/graphql](http://localhost:8888/graphql)
 
 ## Graphiql
 

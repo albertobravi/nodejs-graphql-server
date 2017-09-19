@@ -1,22 +1,26 @@
-import { exec } from 'child_process';
-import dotenv from 'dotenv';
-import url from 'url';
+import fs from 'fs';
+import RecipeModel from '../models/Recipe';
 
-dotenv.config();
+fs.readFile('./src/feeder/data.json', 'utf8', (err, data) => {
+  if (err) throw err;
+  const json = JSON.parse(data);
+  const recipes = [];
 
-const mongoParams = url.parse(process.env.MONGO_URL);
+  json.forEach((doc) => {
+    const recipe = new RecipeModel({
+      _id: doc.id,
+      title: doc.title,
+      body: doc.body,
+    })
+      .save();
 
-const db = mongoParams.path ? mongoParams.path.replace(/\//, '') : '/';
-const user = mongoParams.auth ? `-u ${mongoParams.auth.split(':')[0]}` : '';
-const pass = mongoParams.auth ? `-p ${mongoParams.auth.split(':')[1]}` : '';
+    recipes.push(recipe);
+  });
 
-const command = `mongoimport -h ${mongoParams.host} --db ${db} \
-  --collection recipes --drop ${user} ${pass} --file src/feeder/data.json`;
-
-exec(command, (err, stdout, stderr) => {
-  if (err) {
-    console.log(stderr);
-  } else {
-    console.log('Successfully imported the initial data.');
-  }
+  Promise.all(recipes)
+    .then(() => {
+      console.log('Finish...');
+      process.exit();
+    })
+    .catch(errModel => console.log(errModel));
 });
