@@ -5,10 +5,7 @@ A GraphQL server written in NodeJS
 
 ## Getting started
 
-- Create a file `.env` with a valid MongoDB connection url
-```
-MONGO_URL=...
-```
+- `cp .env.example .env` (and edit as needed)
 
 - `yarn` 
 
