@@ -1,4 +1,5 @@
 import { makeExecutableSchema } from 'graphql-tools';
+import mongoose from 'mongoose';
 import RecipeLoaders from '../dataloaders/Recipe';
 import RecipeModel from '../models/Recipe';
 
@@ -11,6 +12,11 @@ type Recipe {
 
 type RecipeStatus {
   message: String!
+}
+
+input CreateRecipeInput {
+  title: String
+  body: String
 }
 
 input UpdateRecipeInput {
@@ -29,6 +35,7 @@ type Query {
 }
 
 type Mutation {
+  createRecipe(input: CreateRecipeInput!): Recipe
   updateRecipe(input: UpdateRecipeInput!): Recipe
   deleteRecipe(input: DeleteRecipeInput!): RecipeStatus
 }
@@ -45,12 +52,24 @@ const resolvers = {
     recipeByTitle: (_, { title }) => RecipeLoaders.titles.load(title),
   },
   Mutation: {
+    createRecipe: (_, CreateRecipeInput) => {
+      return new RecipeModel({
+        _id: mongoose.Types.ObjectId(),
+        title: CreateRecipeInput.input.title,
+        body: CreateRecipeInput.input.body,
+      })
+        .save()
+        .then(recipe => recipe)
+        .then(null, err => err);
+    },
     updateRecipe: (_, UpdateRecipeInput) => {
       return RecipeModel.findById(UpdateRecipeInput.input.id)
         .exec()
         .then((recipe) => {
-          recipe.title = UpdateRecipeInput.input.title || recipe.title;
-          recipe.body = UpdateRecipeInput.input.body || recipe.body;
+          recipe.set({
+            title: UpdateRecipeInput.input.title || recipe.title,
+            body: UpdateRecipeInput.input.body || recipe.body
+          });
 
           return recipe.save();
         })

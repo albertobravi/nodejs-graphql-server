@@ -3,9 +3,15 @@ A GraphQL server written in NodeJS
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/albertobravi/nodejs-graphql-server.svg)](https://greenkeeper.io/)
 
+## Requirements
+- NodeJS
+- MongoDB
+
 ## Getting started
 
 - `cp .env.example .env` (and edit as needed)
+
+- `yarn`
 
 - `yarn import-data`
 
@@ -15,15 +21,69 @@ A GraphQL server written in NodeJS
 
 go here: [graphiql](http://localhost:8888/graphql/graphiql)
 
-## Database schema (Example)
+## Example queries
 
-Collection name: `recipes`
-```json
+#### Create
+```
+mutation create($input: CreateRecipeInput!) {
+  createRecipe(input: $input) {
+    id
+    title
+    body
+  }
+}
+---Params---
 {
-    "_id": {
-        "$oid": "1a2b3c4d5e6f7g8h9i"
-    },
-    "title": "Lorem ipsum dolor sit amet",
-    "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  "input": {
+    "title": "Title created",
+    "body": "Body created"
+  }
+}
+```
+
+#### Read
+```
+query read($id: ID!) {
+  recipeById(id: $id) {
+    title
+    body
+  }
+}
+---Params---
+{
+  "id": "591987bfb2c2a737588dcfc1"
+}
+```
+
+#### Update
+```
+mutation update($input: UpdateRecipeInput!) {
+  updateRecipe(input: $input) {
+    title
+    body
+  }
+}
+---Params---
+{
+  "input": {
+    "id": "591987bfb2c2a737588dcfc1",
+    "title": "Title edited",
+    "body": "Body edited"
+  }
+}
+```
+
+#### Delete
+```
+mutation delete($input: DeleteRecipeInput!) {
+  deleteRecipe(input: $input) {
+    message
+  }
+}
+---Params---
+{
+  "input": {
+    "id": "591987bfb2c2a737588dcfc1"
+  }
 }
 ```
