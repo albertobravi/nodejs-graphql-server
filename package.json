@@ -20,7 +20,7 @@
     "express": "^4.15.4",
     "graphql": "^0.11.2",
     "graphql-server-express": "^1.1.2",
-    "graphql-tools": "^2.0.0",
+    "graphql-tools": "^2.2.0",
     "mongoose": "^4.11.10",
     "pug": "^2.0.0-rc.4"
   },
