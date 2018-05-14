@@ -14,7 +14,7 @@
     "watch": "nodemon --exec 'yarn build' --watch src ./src/server.js"
   },
   "dependencies": {
-    "body-parser": "^1.17.2",
+    "body-parser": "^1.18.3",
     "dataloader": "^1.4.0",
     "dotenv": "^5.0.1",
     "express": "^4.15.4",
