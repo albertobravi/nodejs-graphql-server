@@ -21,7 +21,7 @@
     "graphql": "^14.0.2",
     "graphql-server-express": "^1.4.0",
     "graphql-tools": "^4.0.2",
-    "mongoose": "^5.4.3",
+    "mongoose": "^5.5.14",
     "pug": "^2.0.3"
   },
   "devDependencies": {
